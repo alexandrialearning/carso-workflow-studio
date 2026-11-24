@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+
+  --bg-canvas: #0e1016;
+  --bg-chrome: #13161f;
+  --bg-node: #191d28;
+  --fg-primary: #f4f6fa;
+  --fg-secondary: #a2adbf;
+  --fg-muted: #6c778b;
+  --mint: #80e0be;
+  --mint-deep: #3ca382;
+  --gold: #deb440;
+  --n8n-coral: #ff6d5a;
+  --border-subtle: #262c3b;
+
+  --scrollbar-thumb: #323a4e;
+  --scrollbar-track: #10131a;
+
+  accent-color: var(--mint);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+@supports not (scrollbar-color: auto) {
+  * {
+    scrollbar-width: auto;
+  }
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
+
+html,
+body,
+#root {
+  background-color: var(--bg-canvas);
+  color: var(--fg-primary);
+  margin: 0;
+  height: 100dvh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-heading {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+.font-mono-code {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Authentic n8n dot-grid canvas */
+.n8n-dot-grid {
+  background-color: var(--bg-canvas);
+  background-image: radial-gradient(
+    circle,
+    rgba(148, 163, 184, 0.22) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+/* Dedicated drag handle styling per modern-web-guidance `drag` */
+.drag-handle {
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.drag-handle.dragging {
+  cursor: grabbing;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip-path: inset(50%);
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+}
+
+/* Animated workflow wire flow */
+@keyframes edge-flow {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.edge-animated {
+  stroke-dasharray: 6 6;
+  animation: edge-flow 0.65s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edge-animated {
+    animation: none;
+  }
+}

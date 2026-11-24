@@ -1,0 +1,21 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: carso-scroll-v2-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+      - GENERIC_TIMEZONE=America/Mexico_City
+      - N8N_CORS_ALLOW_ORIGIN=http://127.0.0.1:5173,http://localhost:5173
+      # Descomenta para conectar directo con Vertex AI en tu proyecto de Google Cloud:
+      # - GCP_PROJECT_ID=carso-corp-ai-pilot
+    volumes:
+      - n8n_carso_data:/home/node/.n8n
+
+volumes:
+  n8n_carso_data:
